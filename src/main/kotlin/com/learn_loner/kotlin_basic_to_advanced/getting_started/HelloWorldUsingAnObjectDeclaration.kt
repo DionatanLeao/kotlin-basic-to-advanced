@@ -1,4 +1,4 @@
-package com.learn_loner.kotlin_basic_to_advanced.hello_world
+package com.learn_loner.kotlin_basic_to_advanced.getting_started
 
 object HelloWorldUsingAnObjectDeclaration {
     @JvmStatic
