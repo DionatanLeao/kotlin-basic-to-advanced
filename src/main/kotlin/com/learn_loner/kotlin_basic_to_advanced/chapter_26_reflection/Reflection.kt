@@ -1,9 +1,9 @@
 package com.learn_loner.kotlin_basic_to_advanced.chapter_26_reflection
 
 import com.learn_loner.kotlin_basic_to_advanced.chapter_19_interfaces.MyClass
+import jdk.incubator.vector.VectorOperators.Test
 import java.lang.reflect.Modifier
-import kotlin.reflect.KClass
-import kotlin.reflect.KProperty1
+import kotlin.reflect.*
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaGetter
 
@@ -28,6 +28,14 @@ fun main() {
         println(member.name)
 //        println("${member.name} -> ${member.get(example)}")
     }
+
+//    val instance = TestClass()
+//    TestClass::class.memberProperties
+//        .filter { prop -> prop.visibility == KVisibility.PUBLIC }
+//        .filterIsInstance<KMutableProperty<*>>()
+//        .forEach { prop ->
+//            println("${prop.name} -> ${prop.get(instance)}")
+//        }
 }
 
 fun isPositive(x: Int) = x > 0
@@ -44,5 +52,37 @@ class Example(val field1: String, val field2: Int, baseField: String) : BaseExam
 
 fun isFieldAccessible(property: KProperty1<*, *>): Boolean {
     return property.javaGetter?.modifiers?.let { !Modifier.isPrivate(it) } ?: false
+}
+
+class TestClass {
+    val readOnlyProperty: String
+        get() = "Ready only!"
+
+    var readWriteString = "asd"
+    var readWriteInt = 23
+
+    var readWriteBackedStringProperty: String = ""
+        get() = field + '5'
+        set(value) { field = value + '5' }
+
+    var readWriteBackedIntProperty: Int = 0
+        get() = field + 1
+        set(value) { field = value -1 }
+
+    var delegatedProperty: Int by TestDelegate()
+
+    private var privateProperty = "This should be private"
+
+    private class TestDelegate {
+        private var backingField = 3
+
+        operator fun getValue(thisRef: Any?, prop: KProperty<*>): Int {
+            return backingField
+        }
+
+        operator fun setValue(thisRef: Any?, prop: KProperty<*>, value: Int) {
+            backingField += value
+        }
+    }
 }
 
