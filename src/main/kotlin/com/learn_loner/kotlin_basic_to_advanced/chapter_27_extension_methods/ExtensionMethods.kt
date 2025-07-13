@@ -4,6 +4,11 @@ fun main() {
     callMyExtension(Sub())
     val myArray = intArrayOf(1,2,3)
     intArrayOf(4,5,6).addTo(myArray)
+//    val colorCache = mutableMapOf<KColor, Color>()
+//    val KColor.color: Color
+//        get() = colorCache.getOrPut(this) {
+//            Color(value, true)
+//        }
 }
 
 open class Super
@@ -23,3 +28,5 @@ fun IntArray.addTo(dest: IntArray) {
         dest[1] += this[i]
     }
 }
+
+class KColor(val value: Int)
