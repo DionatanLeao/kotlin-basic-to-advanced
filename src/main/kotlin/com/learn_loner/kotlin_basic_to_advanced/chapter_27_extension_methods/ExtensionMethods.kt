@@ -1,5 +1,8 @@
 package com.learn_loner.kotlin_basic_to_advanced.chapter_27_extension_methods
 
+import java.nio.file.Files
+import java.nio.file.Path
+
 fun main() {
     callMyExtension(Sub())
     val myArray = intArrayOf(1,2,3)
@@ -9,6 +12,8 @@ fun main() {
 //        get() = colorCache.getOrPut(this) {
 //            Color(value, true)
 //        }
+//    val dir = Path.get(dirName)
+//    if (dir.exists()) dir.deleteRecursively()
 }
 
 open class Super
@@ -30,3 +35,7 @@ fun IntArray.addTo(dest: IntArray) {
 }
 
 class KColor(val value: Int)
+
+fun Path.exists(): Boolean = Files.exists(this)
+fun Path.notExists(): Boolean = !this.exists()
+fun Path.deleteRecursively(): Boolean = this.toFile().deleteRecursively()
