@@ -4,6 +4,9 @@ import java.lang.Math.pow
 import java.nio.file.Files
 import java.nio.file.Path
 import java.text.DecimalFormat
+import java.time.Instant
+import java.time.format.DateTimeFormatter
+import java.time.temporal.Temporal
 import kotlin.math.log10
 import kotlin.math.pow
 
@@ -20,6 +23,8 @@ fun main() {
 //    if (dir.exists()) dir.deleteRecursively()
     println(1999549L.humanReadable())
     println(20.humanReadable())
+    val someInstant = Instant.now()
+    val dateAsString = someInstant.toIsoString()
 }
 
 open class Super
@@ -54,3 +59,5 @@ fun Long.humanReadable(): String {
 fun Int.humanReadable(): String {
     return this.toLong().humanReadable()
 }
+
+fun Temporal.toIsoString(): String = DateTimeFormatter.ISO_INSTANT.format(this)
