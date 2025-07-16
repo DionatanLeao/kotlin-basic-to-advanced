@@ -3,6 +3,7 @@ package com.learn_loner.kotlin_basic_to_advanced.chapter_27_extension_methods
 import java.lang.Math.pow
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.text.DecimalFormat
 import java.time.Instant
 import java.time.format.DateTimeFormatter
@@ -25,6 +26,9 @@ fun main() {
     println(20.humanReadable())
     val someInstant = Instant.now()
     val dateAsString = someInstant.toIsoString()
+    val x: Path = Paths.get("dirName").apply {
+        if (Files.notExists(this)) throw IllegalStateException("The important file does not exist")
+    }
 }
 
 open class Super
