@@ -68,15 +68,11 @@ fun Int.humanReadable(): String {
 }
 
 fun Temporal.toIsoString(): String = DateTimeFormatter.ISO_INSTANT.format(this)
-
-class Something {
-    companion object {}
-}
-
-class SomethingElse {
-    companion object {}
-}
-
+class Something { companion object {} }
+class SomethingElse { companion object {} }
 fun Something.Companion.fromString(s: String): Something = Something()
-
 fun SomethingElse.fromString(s: String): SomethingElse = SomethingElse()
+//inline fun <reified T: View> View.find(id: Int): T = findViewById(id) as T
+//inline fun <reified T: View> Activity.find(id: Int): T = findViewById(id) as T
+//inline fun <reified T: View> Fragment.find(id: Int): T = view?.findViewById(id) as T
+//inline fun <reified T: View> RecyclerView.ViewHolder.find(id: Int): T = itemView?.findViewById(id) as T
