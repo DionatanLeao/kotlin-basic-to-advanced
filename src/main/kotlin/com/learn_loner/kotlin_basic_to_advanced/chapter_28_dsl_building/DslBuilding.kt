@@ -35,3 +35,4 @@ class MyExample(val i: Int) {
 //    try { block.invoke()}
 //    catch (e: AssertException) { println("$this\n${e.message}") }
 //}
+
