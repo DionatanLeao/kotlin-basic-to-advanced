@@ -4,7 +4,7 @@ fun main() {
     val people = People("Name 1")
     val people2 = People("Name 2")
     val pl = listOf(people, people2)
-    val list = pl.map {
+    pl.map {
         println(it.name)
     }
     val persons = listOf(
@@ -16,6 +16,23 @@ fun main() {
     persons.map {
         println("Name is ${it.name} and age is ${it.age}")
     }
+
+    val map1 = persons.map {
+        it.age to it.name
+    }.toMap()
+    println(map1)
+
+//    val map2 = personsMap.toMap({ it.age }, { it.name })
+//    println(map2)
+
+//    val map3 = persons.toMapBy { it.name }
+//    println(map3)
+
+    val map4 = persons.groupBy { it.age }
+    println(map4)
+
+    val map5 = persons.groupBy { it.age }.mapValues { it -> it.value.map { it.name } }
+    println(map5)
 }
 
 data class People(val name: String)
